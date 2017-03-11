@@ -61,6 +61,11 @@ public class HomeController {
         LineChartDataContainer lineChartDataContainer = new LineChartDataContainer(getChartInfo(), "Line Chart", SizeClass.BIG_SIZE);
         lineChartDataContainer.setColor("#378ddd");
         modelAndView.addObject("lineChart", lineChart.create(lineChartDataContainer));
+
+        lineChartDataContainer.setTitle("Line Chart 2");
+        lineChartDataContainer.setColor("#c51d1d");
+        lineChartDataContainer.setCharData(getChartInfo());
+        modelAndView.addObject("lineChart2", lineChart.create(lineChartDataContainer));
 //
 //        /*DONUT CHART*/
         RoundChartDataContainer roundChartDataContainer = new RoundChartDataContainer(getChartInfo(), "Donut Chart", SizeClass.MIDDLE_SIZE);

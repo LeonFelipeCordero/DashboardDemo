@@ -9,7 +9,7 @@
         <div class="panel-heading" th:text="${title}"></div>
         <div class="panel-body">
             <div class="canvas-wrapper">
-                <canvas class="main-chart" id="line" height="200" width="600" style="width: 600px; height: 200px;"></canvas>
+                <canvas class="main-chart" th:id="${id}" height="200" width="600" style="width: 600px; height: 200px;"></canvas>
             </div>
         </div>
     </div>
@@ -35,6 +35,9 @@
             }
         ]
     };
-
+    var lineChart = document.getElementById([[${id}]]);
+    if (lineChart != undefined) {
+        window.myLine = new Chart(lineChart.getContext("2d")).Line(lineChartData, {responsive: true});
+    }
 </script>
 
