@@ -1,0 +1,42 @@
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var superlabels = [];
+    var supervalues = [];
+    /*]]>*/
+</script>
+<div th:class="${size}">
+    <div class="panel panel-default">
+        <div class="panel-heading" th:text="${title}"></div>
+        <div class="panel-body">
+            <div class="canvas-wrapper">
+                <canvas class="main-chart" th:id="${id}" height="200" width="600" style="width: 600px; height: 200px;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:each="info : ${data}" th:inline="javascript">
+    superlabels.push([[*{info.key}]])
+    supervalues.push([[*{info.value}]])
+</script>
+<script th:inline="javascript">
+    var color = [[${color}]];
+    var barChartData = {
+        labels: superlabels,
+        datasets: [
+            {
+                label: "My First dataset",
+                fillColor: color,
+                strokeColor: color,
+                pointColor: color   ,
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: supervalues
+            }
+        ]
+    };
+    var barChart = document.getElementById([[${id}]]);
+    if (barChart != undefined) {
+        window.myLine = new Chart(barChart.getContext("2d")).Bar(barChartData, {responsive: true});
+    }
+</script>
