@@ -22,6 +22,7 @@ public class Chart extends Widget {
         SpringTemplateEngine templateEngine = (SpringTemplateEngine) appContext.getBean(SpringTemplateEngine.class);
         context.setVariable("data", data.getCharData());
         context.setVariable("title", data.getTitle());
+        context.setVariable("id", data.getTitle().trim().replace(" ", ""));
         context.setVariable("size", data.getSize());
         setColor(context, data);
         return templateEngine.process(getViewName(), context);

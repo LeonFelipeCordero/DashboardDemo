@@ -61,24 +61,23 @@ public class HomeController {
         LineChartDataContainer lineChartDataContainer = new LineChartDataContainer(getChartInfo(), "Line Chart", SizeClass.BIG_SIZE);
         lineChartDataContainer.setColor("#378ddd");
         modelAndView.addObject("lineChart", lineChart.create(lineChartDataContainer));
-
-        /*DONUT CHART*/
+//
+//        /*DONUT CHART*/
         RoundChartDataContainer roundChartDataContainer = new RoundChartDataContainer(getChartInfo(), "Donut Chart", SizeClass.MIDDLE_SIZE);
         modelAndView.addObject("donutChart", donutChart.create(roundChartDataContainer));
 
-//        roundChartDataContainer.setTitle("Donut Chart 2");
-//        roundChartDataContainer.setCharData(getChartInfo());
-//        modelAndView.addObject("donutChart2", donutChart.create(roundChartDataContainer));
+        roundChartDataContainer.setTitle("Donut Chart 2");
+        roundChartDataContainer.setCharData(getChartInfo());
+        modelAndView.addObject("donutChart2", donutChart.create(roundChartDataContainer));
 
         /*PIE CHART*/
         roundChartDataContainer.setTitle("Pie Chart");
         roundChartDataContainer.setCharData(getChartInfo());
         modelAndView.addObject("pieChart", pieChart.create(roundChartDataContainer));
 
-//        roundChartDataContainer.setTitle("Pie Char 2");
-//        roundChartDataContainer.setCharData(getChartInfo());
-//        modelAndView.addObject("pieChart2", pieChart.create(roundChartDataContainer));
-
+        roundChartDataContainer.setTitle("Pie Char 2");
+        roundChartDataContainer.setCharData(getChartInfo());
+        modelAndView.addObject("pieChart2", pieChart.create(roundChartDataContainer));
 
         modelAndView.setViewName("content/testContent");
         return modelAndView;

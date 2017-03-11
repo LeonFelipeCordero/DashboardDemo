@@ -10,7 +10,7 @@
         <div class="panel-heading" th:text="${title}"></div>
         <div class="panel-body">
             <div class="canvas-wrapper">
-                <canvas class="main-chart" id="donut" height="200" width="600" style="width: 600px; height: 200px;"></canvas>
+                <canvas class="main-chart" th:id="${id}" height="200" width="600" style="width: 600px; height: 200px;"></canvas>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
     superlabels.push([[*{info.key}]])
     supervalues.push([[*{info.value}]])
 </script>
-<script th:inlinec="javascript">
+<script th:inline="javascript">
     var donutData = [];
     for(i=0;i<superlabels.length;i++) {
         donutData.push({
@@ -28,6 +28,13 @@
             color: colors[i],
             highlight: colors[i]
 
+        });
+    }
+
+    var donutChart = document.getElementById([[${id}]]);
+    if (donutChart != undefined) {
+        window.myLine = new Chart(donutChart.getContext("2d")).Doughnut(donutData, {
+            responsive: true
         });
     }
 </script>
