@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ph.dashboard.models.Person;
 import ph.dashboard.service.PersonService;
+import ph.dashboard.widget.Alert.AlertPriority;
+import ph.dashboard.widget.containers.AlertDataContainer;
 import ph.dashboard.widget.containers.LineChartDataContainer;
 import ph.dashboard.widget.Widget;
 import ph.dashboard.widget.containers.RoundChartDataContainer;
@@ -13,6 +15,7 @@ import ph.dashboard.widget.containers.TableDataContainer;
 import ph.dashboard.widget.size.SizeClass;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +45,10 @@ public class HomeController {
 
     @Resource(name = "pieChartWidget")
     private Widget pieChart;
+
+    @Resource(name = "alertWidget")
+    private Widget alert;
+
 
     @RequestMapping(value = "/")
     public ModelAndView index(ModelAndView modelAndView) {
@@ -90,6 +97,16 @@ public class HomeController {
 //        roundChartDataContainer.setTitle("Pie Char 2");
 //        roundChartDataContainer.setCharData(getChartInfo());
 //        modelAndView.addObject("pieChart2", pieChart.create(roundChartDataContainer));
+
+        /*Alerts*/
+        AlertDataContainer alertDataContainer = new AlertDataContainer("12", AlertPriority.LOW,"New Customers");
+        modelAndView.addObject("alertLow", alert.create(alertDataContainer));
+        alertDataContainer = new AlertDataContainer("4", AlertPriority.MEDIUM,"404 Eror");
+        modelAndView.addObject("alertMedium", alert.create(alertDataContainer));
+        alertDataContainer = new AlertDataContainer("5%", AlertPriority.HIGH,"Error Rate");
+        modelAndView.addObject("alertHigh", alert.create(alertDataContainer));
+        alertDataContainer = new AlertDataContainer("18%", AlertPriority.VERY_HIGH,"Sales Rate");
+        modelAndView.addObject("alertVeryHigh", alert.create(alertDataContainer));
 
         modelAndView.setViewName("content/testContent");
         return modelAndView;
