@@ -1,6 +1,7 @@
 package ph.dashboard.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,29 +26,40 @@ import java.util.Map;
 @Controller
 public class HomeController {
 
+    private final PersonService personService;
+
+    private final Widget complexTable;
+
+    private final Widget table;
+
+    private final Widget lineChart;
+
+    private final Widget barChart;
+
+    private final Widget donutChart;
+
+    private final Widget pieChart;
+
+    private final Widget alert;
+
     @Autowired
-    private PersonService personService;
-
-    @Resource(name = "complexTableWidget")
-    private Widget complexTable;
-
-    @Resource(name = "tableWidget")
-    private Widget table;
-
-    @Resource(name = "lineChartWidget")
-    private Widget lineChart;
-
-    @Resource(name = "barChartWidget")
-    private Widget barChart;
-
-    @Resource(name = "donutChartWidget")
-    private Widget donutChart;
-
-    @Resource(name = "pieChartWidget")
-    private Widget pieChart;
-
-    @Resource(name = "alertWidget")
-    private Widget alert;
+    public HomeController(PersonService personService,
+                          @Qualifier("complexTableWidget") Widget complexTable,
+                          @Qualifier("tableWidget") Widget table,
+                          @Qualifier("lineChartWidget") Widget lineChart,
+                          @Qualifier("barChartWidget") Widget barChart,
+                          @Qualifier("donutChartWidget") Widget donutChart,
+                          @Qualifier("pieChartWidget") Widget pieChart,
+                          @Qualifier("alertWidget") Widget alert) {
+        this.personService = personService;
+        this.complexTable = complexTable;
+        this.table = table;
+        this.lineChart = lineChart;
+        this.barChart = barChart;
+        this.donutChart = donutChart;
+        this.pieChart = pieChart;
+        this.alert = alert;
+    }
 
 
     @RequestMapping(value = "/")

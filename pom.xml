@@ -6,7 +6,7 @@
 	<groupId>ph.dashboard</groupId>
 	<artifactId>dashboarddemo</artifactId>
 	<version>ROOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>dashboarddemo</name>
 	<description>Demo for dashboard</description>
@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.4.4.RELEASE</version>
+		<version>1.5.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
